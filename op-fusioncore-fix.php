@@ -16,7 +16,7 @@
  * Plugin Name:       OptimizePress Fusion Core fix
  * Plugin URI:        http://www.optimizepress.com/
  * Description:       Removes "image" shortcode from Fusion Core plugin on Live Editor pages
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            OptimizePress
  * Author URI:        http://www.optimizepress.com/
  * License:           GPL-2.0+
@@ -34,7 +34,16 @@ add_action('init' , 'op_fusioncore_shortcodes', 99);
 function op_fusioncore_shortcodes(){
     $checkIfLEPage = get_post_meta( url_to_postid( "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] ), '_optimizepress_pagebuilder', true );
 
-    if ( ($checkIfLEPage == 'Y') || ( $_GET['page'] == 'optimizepress-page-builder' )){
+    $pageBuilder = false;
+    if ( isset($_GET['page']) ) {
+        $pageBuilder = ($_GET['page'] == 'optimizepress-page-builder' ) ? true : false;
+    }
+    $liveEditorAjaxInsert = false;
+    if ( isset($_REQUEST['action']) ) {
+        $liveEditorAjaxInsert = ($_REQUEST['action'] == 'optimizepress-live-editor-parse' ) ? true : false;
+    }
+
+    if ( ($checkIfLEPage == 'Y') || $pageBuilder || $liveEditorAjaxInsert ){
         global $shortcode_tags;
         $shortcode_tags['images'][0] = 'OptimizePress_Default_Assets';
         $shortcode_tags['images'][1] = 'images';
