@@ -19,5 +19,9 @@ Removes "image" shortcode from Fusion Core plugin on Live Editor pages
 
 ##Changelog
 
+####1.0.2
+* added support for Fusion Core v.2.0.2
+####1.0.1
+* added compatibility for OptimizePress shortcode "images"
 ####1.0
 * Initial release
