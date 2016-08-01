@@ -2,7 +2,7 @@
 
 ##Description
 
-Removes "image" shortcode from Fusion Core plugin on Live Editor pages
+Fix problem with RTE in LiveEditor and forces images/testimonial shortcode from OptimizePress
 
 ##Installation
 
